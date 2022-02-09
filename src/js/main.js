@@ -6,7 +6,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { getCanvasSize, containDocumentBody } from './modules/Utils';
 
-const bowlModelUrl = '/public/assets/bowl.glb';
+const bowlModelUrl = '/assets/bowl.glb';
 
 const appContainer = document.querySelector('.app');
 
