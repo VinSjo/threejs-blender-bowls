@@ -1,13 +1,14 @@
-"use strict";
-import * as THREE from "https://threejs.org/build/three.module.js";
-import {GLTFLoader} from "https://threejs.org/examples/jsm/loaders/GLTFLoader.js";
-import {OrbitControls} from "https://threejs.org/examples/jsm/controls/OrbitControls.js";
-import Stats from "https://threejs.org/examples/jsm/libs/stats.module.js";
-import {getCanvasSize, containDocumentBody} from "./modules/Utils.js";
+'use strict';
 
-const bowlModelUrl = "../assets/glb/bowl.glb";
+import * as THREE from 'three';
+import Stats from 'three/examples/jsm/libs/stats.module';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { getCanvasSize, containDocumentBody } from './modules/Utils';
 
-const appContainer = document.querySelector(".app");
+const bowlModelUrl = '/public/assets/bowl.glb';
+
+const appContainer = document.querySelector('.app');
 
 const canvasFillScreen = true;
 const canvasMaxCover = 1;
@@ -20,8 +21,8 @@ const bgColor = new THREE.Color(
 		THREE.MathUtils.mapLinear(Math.random(), 0, 1, 25, 128)
 	)},${Math.round(THREE.MathUtils.mapLinear(Math.random(), 0, 1, 25, 128))})`
 );
-const lightColor = new THREE.Color("rgb(255,255,255)");
-const bowlMaterial = new THREE.MeshStandardMaterial({color: bgColor});
+const lightColor = new THREE.Color('rgb(255,255,255)');
+const bowlMaterial = new THREE.MeshStandardMaterial({ color: bgColor });
 const gridOffset = 2.5;
 let bowls = [];
 
@@ -37,7 +38,7 @@ window.onload = () => {
 	initScene();
 	animate();
 	initListeners();
-	appContainer.classList.add("show");
+	appContainer.classList.add('show');
 };
 
 function initScene() {
@@ -57,7 +58,7 @@ function initScene() {
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize(canvasSize.width, canvasSize.height);
 	renderer.setPixelRatio(window.devicePixelRatio);
-	renderer.domElement.classList.add("grab");
+	renderer.domElement.classList.add('grab');
 
 	const keyLight = new THREE.RectAreaLight(lightColor, 0.3, 50, 50);
 	keyLight.position.set(2.5, 5, 2.5);
@@ -72,7 +73,7 @@ function initScene() {
 	controls.enableDamping = true;
 
 	stats = new Stats();
-	stats.dom.classList.add("stats-display");
+	stats.dom.classList.add('stats-display');
 
 	updateProjection(canvasSize);
 
@@ -106,7 +107,7 @@ function initScene() {
 	);
 
 	appContainer.appendChild(renderer.domElement);
-	appContainer.classList.add("show");
+	appContainer.classList.add('show');
 }
 
 function animate() {
@@ -127,7 +128,7 @@ function animate() {
 		controls && controls.update();
 		runAnimation && requestAnimationFrame(animate);
 	} catch (e) {
-		console.error("An error occured, aborting execution...");
+		console.error('An error occured, aborting execution...');
 		runAnimation = false;
 	}
 }
@@ -138,7 +139,7 @@ function initListeners() {
 		ScreenOrientation.onchange = window.onresize;
 	} catch (e) {
 		console.error(
-			"Screen Orientation API not available in this browser..."
+			'Screen Orientation API not available in this browser...'
 		);
 	}
 
@@ -146,21 +147,21 @@ function initListeners() {
 		pointerDown = true;
 	};
 
-	window.onpointermove = (ev) => {
+	window.onpointermove = ev => {
 		isDragging = pointerDown;
 		if (ev.target === renderer.domElement) {
 			if (isDragging) {
 				!runAnimation && animate();
-				!renderer.domElement.classList.contains("grabbing") &&
-					renderer.domElement.classList.add("grabbing");
+				!renderer.domElement.classList.contains('grabbing') &&
+					renderer.domElement.classList.add('grabbing');
 			} else {
-				renderer.domElement.classList.contains("grabbing") &&
-					renderer.domElement.classList.remove("grabbing");
+				renderer.domElement.classList.contains('grabbing') &&
+					renderer.domElement.classList.remove('grabbing');
 			}
 		}
 	};
 
-	window.onpointerup = (ev) => {
+	window.onpointerup = ev => {
 		!isDragging &&
 			ev.target === renderer.domElement &&
 			(animateBowls = !animateBowls);
@@ -169,18 +170,18 @@ function initListeners() {
 
 	window.onpointerleave = window.onpointerup;
 
-	window.onkeydown = (ev) => {
-		if (ev.key === " ") {
+	window.onkeydown = ev => {
+		if (ev.key === ' ') {
 			animateBowls = !animateBowls;
 		}
-		if (ev.key === "0") {
+		if (ev.key === '0') {
 			document.body.querySelector(`.${stats.dom.classList[0]}`)
 				? stats.dom.remove()
 				: document.body.appendChild(stats.dom);
 		}
 	};
 
-	window.oncontextmenu = (ev) => {
+	window.oncontextmenu = ev => {
 		if (!(ev instanceof MouseEvent) || ev.button === 0) {
 			ev.preventDefault();
 			ev.stopPropagation();
@@ -214,7 +215,7 @@ function updateProjection(canvasSize) {
 }
 function cloneMesh(
 	src,
-	opt = {position: null, rotation: null, scale: null, material: null}
+	opt = { position: null, rotation: null, scale: null, material: null }
 ) {
 	const obj = src.clone();
 	if (opt.position) {

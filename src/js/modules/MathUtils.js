@@ -1,7 +1,5 @@
-"use strict";
-/**
- * @module MathUtils
- */
+'use strict';
+
 export {
 	isNum,
 	isInt,
@@ -24,7 +22,7 @@ export {
  * @return {Boolean}       true if value is of type "number"
  */
 function isNum(value) {
-	return typeof value === "number";
+	return typeof value === 'number';
 }
 
 /**
@@ -35,7 +33,7 @@ function isNum(value) {
  * @return {Boolean}       true if value is of type "number" and an integer
  */
 function isInt(value) {
-	return typeof value === "number" && value % 1 === 0;
+	return typeof value === 'number' && value % 1 === 0;
 }
 
 /**
@@ -46,7 +44,7 @@ function isInt(value) {
  * @return {Boolean}       true if value is of type "number" and a float
  */
 function isFloat(value) {
-	return typeof value === "number" && value % 1 === 0;
+	return typeof value === 'number' && value % 1 === 0;
 }
 
 /**
@@ -58,7 +56,7 @@ function isFloat(value) {
  * @return {Number}               rounded float value
  */
 function roundFloat(n, precision = 1) {
-	if (typeof n !== "number" || typeof precision !== "number") return n;
+	if (typeof n !== 'number' || typeof precision !== 'number') return n;
 	if (!n || !precision) return n;
 	const m = 10 ** precision;
 	return Math.round(n * m) / m;
@@ -77,9 +75,9 @@ function roundFloat(n, precision = 1) {
  */
 function constrain(n, low, high) {
 	if (
-		typeof n !== "number" ||
-		typeof low !== "number" ||
-		typeof high !== "number"
+		typeof n !== 'number' ||
+		typeof low !== 'number' ||
+		typeof high !== 'number'
 	) {
 		return n;
 	}
@@ -114,11 +112,11 @@ function normalize(n, low, high) {
  */
 function map(n, start1, stop1, start2, stop2, constrainValue = true) {
 	if (
-		typeof n !== "number" ||
-		typeof start1 !== "number" ||
-		typeof start2 !== "number" ||
-		typeof stop1 !== "number" ||
-		typeof stop2 !== "number"
+		typeof n !== 'number' ||
+		typeof start1 !== 'number' ||
+		typeof start2 !== 'number' ||
+		typeof stop1 !== 'number' ||
+		typeof stop2 !== 'number'
 	) {
 		return n;
 	}
@@ -144,10 +142,10 @@ function map(n, start1, stop1, start2, stop2, constrainValue = true) {
  */
 function segmentMap(n, segments, low, high) {
 	if (
-		typeof n !== "number" ||
-		typeof segments !== "number" ||
-		typeof low !== "number" ||
-		typeof high !== "number"
+		typeof n !== 'number' ||
+		typeof segments !== 'number' ||
+		typeof low !== 'number' ||
+		typeof high !== 'number'
 	) {
 		return n;
 	}
@@ -170,7 +168,7 @@ function segmentMap(n, segments, low, high) {
  * @return {Number}    a number between min and the max
  */
 function euclideanModulo(n, max) {
-	if (typeof n !== "number" || typeof max !== "number") return n;
+	if (typeof n !== 'number' || typeof max !== 'number') return n;
 	return ((n % max) + max) % max;
 }
 
@@ -184,7 +182,7 @@ function euclideanModulo(n, max) {
  * @return {Number}       Y value at the normalized value of X, between tMin and tMax
  */
 function parabola(x) {
-	if (typeof x !== "number") return x;
+	if (typeof x !== 'number') return x;
 	const h = 0.5,
 		a = -4;
 	return a * Math.pow(x - h, 2) + 1;
@@ -205,11 +203,11 @@ function parabola(x) {
  */
 function cubicBezier(x, y1, y2, y3, y4) {
 	if (
-		typeof x !== "number" ||
-		typeof y1 !== "number" ||
-		typeof y2 !== "number" ||
-		typeof y3 !== "number" ||
-		typeof y4 !== "number"
+		typeof x !== 'number' ||
+		typeof y1 !== 'number' ||
+		typeof y2 !== 'number' ||
+		typeof y3 !== 'number' ||
+		typeof y4 !== 'number'
 	) {
 		return x;
 	}

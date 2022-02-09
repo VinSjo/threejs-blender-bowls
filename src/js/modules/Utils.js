@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 /**
  * @module Utils
  * @requires MathUtils
  */
-import {constrain} from "./MathUtils.js";
-export {getWindowSize, getCanvasSize, containDocumentBody, clearChildNodes};
+import { constrain } from './MathUtils';
+export { getWindowSize, getCanvasSize, containDocumentBody };
 
 function getWindowSize() {
 	return {
@@ -17,8 +17,8 @@ function containDocumentBody(windowSize) {
 	const w = windowSize ? windowSize : getWindowSize();
 	document.body.width = w.width;
 	document.body.height = w.height;
-	document.body.style.width = w.width + "px";
-	document.body.style.height = w.height + "px";
+	document.body.style.width = w.width + 'px';
+	document.body.style.height = w.height + 'px';
 }
 
 function getCanvasSize(appContainer, canvasFillScreen, canvasMaxCover = 1) {
@@ -51,24 +51,4 @@ function getCanvasSize(appContainer, canvasFillScreen, canvasMaxCover = 1) {
 		height: height,
 		ratio: width / height,
 	};
-}
-
-/**
- * Removes all child elements / nodes from a parent element
- *
- * @function clearChildNodes
- * @param {HTMLElement} htmlElement  the parent element to remove children from
- * @return {void}
- */
-function clearChildNodes(htmlElement) {
-	if (
-		!isHtmlElement(htmlElement) ||
-		!htmlElement.childNodes ||
-		htmlElement.childNodes.length == 0
-	) {
-		return;
-	}
-	while (htmlElement.childNodes.length > 0) {
-		htmlElement.removeChild(htmlElement.lastChild);
-	}
 }
